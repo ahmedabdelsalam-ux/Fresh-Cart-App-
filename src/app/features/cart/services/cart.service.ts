@@ -67,6 +67,6 @@ export class CartService {
     if (isPlatformBrowser(this.platformId)) {
       return `${window.location.origin}/allorders`;
     }
-    return `${environment.base_url}/allorders`;
+    return `${environment.base_url}`;
   }
 }
