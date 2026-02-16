@@ -1,0 +1,30 @@
+<section class="pb-16 pt-10 bg-gray-100">
+  <div class="container xl:w-[93%]">
+    <h2 class="text-green-500 text-xl capitalize pb-3">shop popular categories</h2>
+
+    <div class="slidear mt-6">
+      <owl-carousel-o [options]="categoriesCustomOptions">
+        @for (category of categorieList(); track category._id) {
+          <ng-template carouselSlide [id]="category._id">
+            <div>
+              <div>
+                <img
+                  class="w-full h-100"
+                  [src]="category.image"
+                  [alt]="category.name"
+                  [title]="category.name"
+                />
+              </div>
+              <h4
+                [routerLink]="['/filter-product', category.slug, category._id]"
+                class="text-green-600 text-lg w-fit cursor-pointer"
+              >
+                {{ category.name }}
+              </h4>
+            </div>
+          </ng-template>
+        }
+      </owl-carousel-o>
+    </div>
+  </div>
+</section>

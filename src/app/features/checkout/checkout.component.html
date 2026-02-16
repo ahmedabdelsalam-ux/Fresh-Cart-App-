@@ -1,0 +1,55 @@
+<section
+  class="border border-gray-200 shadow-xs rounded bg-gray-200 md:w-1/2 mx-auto p-4 px-6 py-10 my-16"
+>
+  <div class="titel py-4">
+    <h2 class="mb-3 text-green-600 font-medium text-3xl text-center">Checkout Now</h2>
+  </div>
+
+  <form [formGroup]="checkOutForm">
+    <div formGroupName="shippingAddress">
+      <div class="mb-2">
+        <label for="details" class="main-label">Details</label>
+        <textarea
+          formControlName="details"
+          id="details"
+          class="main-input"
+          placeholder=""
+        ></textarea>
+      </div>
+
+      <div class="mb-4">
+        <label for="phone" class="main-label">Phone Number</label>
+        <input
+          formControlName="phone"
+          autocomplete="off"
+          type="tel"
+          id="phone"
+          class="main-input"
+          placeholder=""
+        />
+      </div>
+      <div class="mb-4">
+        <label for="city" class="main-label">City</label>
+        <input
+          formControlName="city"
+          autocomplete="off"
+          type="text"
+          id="city"
+          class="main-input"
+          placeholder=""
+        />
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <button type="button" (click)="onSubmitCheckOutFormWithVisa()" class="btn-main px-3 w-full">
+        Payment With <i class="fa-brands fa-cc-visa text-2xl"></i>
+      </button>
+    </div>
+    <div class="">
+      <button type="button" (click)="onSubmitCheckOutFormWithCach()" class="btn-main px-3 w-full">
+        Payment With Cach
+      </button>
+    </div>
+  </form>
+</section>

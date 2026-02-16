@@ -1,0 +1,27 @@
+<section class="pb-16 pt-10 bg-gray-100">
+  <div class="container xl:w-[93%]">
+    <div class="paerant gap-4 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+      @for (category of categorieList(); track category._id) {
+        <div class="">
+          <div
+            class="image cursor-pointer"
+            [routerLink]="['/filter-product', category.slug, category._id]"
+          >
+            <img
+              class="w-full h-100"
+              [src]="category.image"
+              [alt]="category.name"
+              [title]="category.name"
+            />
+          </div>
+          <h4
+            [routerLink]="['/filter-product', category.slug, category._id]"
+            class="text-green-600 text-lg w-fit cursor-pointer"
+          >
+            {{ category.name }}
+          </h4>
+        </div>
+      }
+    </div>
+  </div>
+</section>

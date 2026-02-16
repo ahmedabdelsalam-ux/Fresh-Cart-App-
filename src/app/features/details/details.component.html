@@ -1,0 +1,36 @@
+@if (productDetailsData().category) {
+  <section class="py-16 px-6">
+    <div class="container xl:w[93%]">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+        <div class="md:col-span-3">
+          <div>
+            <img
+              class="w-full"
+              [src]="productDetailsData().imageCover"
+              [alt]="productDetailsData().title"
+              [title]="productDetailsData().title"
+            />
+          </div>
+        </div>
+
+        <div class="md:col-span-8 md:col-start-5">
+          <div class="p-6">
+            <h2 class="title text-3xl pb-4">{{ productDetailsData().title }}</h2>
+            <p class="text-2xl text-gray-700 pb-6">
+              {{ productDetailsData().description }}
+            </p>
+            <h4 class="text-green-600 text-xl pb-3">{{ productDetailsData().category.name }}</h4>
+
+            <div class="card-footer flex justify-between items-center">
+              <span>{{ productDetailsData().price }} EGP</span>
+              <span>
+                <i class="fas fa-star text-yellow-500"></i>
+                {{ productDetailsData().ratingsAverage }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+}

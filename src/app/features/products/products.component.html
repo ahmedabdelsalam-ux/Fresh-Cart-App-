@@ -1,0 +1,40 @@
+<section class="py-16">
+  <div class="container xl:w-[93%]">
+    <h2 class="text-green-500 text-3xl font-medium mb-6 capitalize pb-3 text-center">
+      shop all products
+    </h2>
+
+    <div class="my-6 w-1/2 m-auto">
+      <input
+        [(ngModel)]="text"
+        type="search"
+        id="search"
+        class="main-input"
+        placeholder="Search By Titel.."
+      />
+    </div>
+
+    <div
+      class="paerant mb-10 gap-4 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5"
+    >
+      @for (
+        product of AllProductList() | paginate: pagination | searchByTitel: text;
+        track product._id
+      ) {
+        <app-card [cardProduct]="product"></app-card>
+      } @empty {
+        <div class="col-span-5 w-1/4 mx-auto">
+          <div
+            class="p-4 mt-4 text-center text-base border-2 border-green-600 ring-green-600/50 text-green-600 rounded-base bg-green-200 capitalize"
+          >
+            no data found
+          </div>
+        </div>
+      }
+    </div>
+
+    <div class="text-center my-pagination">
+      <pagination-controls id="products" (pageChange)="pageChanged($event)"> </pagination-controls>
+    </div>
+  </div>
+</section>

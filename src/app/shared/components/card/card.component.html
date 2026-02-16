@@ -1,0 +1,46 @@
+<div class="card p-1 overflow-hidden group/card">
+  <div
+    class="item-body p-4 cursor-pointer"
+    [routerLink]="['/details', cardProduct.slug, cardProduct._id]"
+  >
+    <img
+      class="w-full h-100"
+      [src]="cardProduct.imageCover"
+      [alt]="cardProduct.title"
+      [title]="cardProduct.title"
+    />
+
+    <div>
+      <h4 class="text-green-600 text-sm">{{ cardProduct.category.name }}</h4>
+      <h3 class="title text-xl pb-2">{{ cardProduct.title.split(' ', 3).join(' ') }}</h3>
+      <div class="card-footer text-sm flex justify-between items-center">
+        <span>{{ cardProduct.price }} EGP</span>
+        <span>
+          <i class="fas fa-star text-yellow-500"></i>
+          {{ cardProduct.ratingsAverage }}
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex justify-between align-middle">
+    <button
+      (click)="addProductItemToCart(cardProduct._id)"
+      class="btn-main w-full translate-y-[120%] group-hover/card:translate-y-0 transition"
+    >
+      Add To Cart
+    </button>
+
+    @if (!isInWishlist()) {
+      <i
+        (click)="toggleWishlist($event)"
+        class="fa-regular fa-heart text-2xl cursor-pointer transition-all duration-300 hover:text-red-600 hover:scale-110"
+      ></i>
+    } @else {
+      <i
+        (click)="toggleWishlist($event)"
+        class="fa-solid fa-heart text-red-600 text-2xl cursor-pointer transition-all duration-300 hover:scale-110"
+      ></i>
+    }
+  </div>
+</div>
