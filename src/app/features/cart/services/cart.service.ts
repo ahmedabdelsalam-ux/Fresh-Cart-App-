@@ -65,8 +65,8 @@ export class CartService {
 
   private getReturnUrl(): string {
     if (isPlatformBrowser(this.platformId)) {
-      return `${window.location.origin}/allorders`;
+      return window.location.origin;
     }
-    return `${environment.base_url}allorders`;
+    return environment.base_url;
   }
 }
