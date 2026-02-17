@@ -61,7 +61,7 @@ export class CheckoutComponent implements OnInit {
 
   onSubmitCheckOutFormWithVisa(): void {
     if (this.checkOutForm.valid) {
-      this.cartService.checkOutSessionWithVisa(this.cartId, this.checkOutForm.value).subscribe({
+      this.cartService.setOnlineOrder(this.cartId, this.checkOutForm.value).subscribe({
         next: (res) => {
           console.log(res);
 

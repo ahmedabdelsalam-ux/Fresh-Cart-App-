@@ -63,7 +63,7 @@ export class CartService {
     );
   }
 
-  setOnlineOrder(cartId: string, addressInfo: object): Observable<any> {
+  setOnlineOrder(cartId: string | null, addressInfo: object): Observable<any> {
     const returnUrl = window.location.origin;
     return this.httpClient.post(
       `${environment}/api/v1/orders/checkout-session/${cartId}?url=${encodeURIComponent(returnUrl)}`,
