@@ -66,7 +66,7 @@ export class CartService {
   setOnlineOrder(cartId: string | null, checkOutData: object): Observable<PaymentdetailsRespons> {
     const returnUrl = window.location.origin;
     return this.httpClient.post<PaymentdetailsRespons>(
-      `${environment.base_url}/api/v1/orders/checkout-session/${cartId}?url=${encodeURIComponent(returnUrl)}`,
+      `${environment.base_url}orders/checkout-session/${cartId}?url=${encodeURIComponent(returnUrl)}`,
       checkOutData,
     );
   }
