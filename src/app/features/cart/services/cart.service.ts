@@ -41,17 +41,17 @@ export class CartService {
     return this.httpClient.delete<any>(environment.base_url + 'cart');
   }
 
-  checkOutSessionWithVisa(
-    cartId: string | null,
-    checkOutData: object,
-  ): Observable<PaymentdetailsRespons> {
-    const returnUrl = this.getReturnUrl();
+  // checkOutSessionWithVisa(
+  //   cartId: string | null,
+  //   checkOutData: object,
+  // ): Observable<PaymentdetailsRespons> {
+  //   const returnUrl = this.getReturnUrl();
 
-    return this.httpClient.post<PaymentdetailsRespons>(
-      `${environment.base_url}orders/checkout-session/${cartId}?url=${encodeURIComponent(returnUrl)}`,
-      checkOutData,
-    );
-  }
+  //   return this.httpClient.post<PaymentdetailsRespons>(
+  //     `${environment.base_url}orders/checkout-session/${cartId}?url=${encodeURIComponent(returnUrl)}`,
+  //     checkOutData,
+  //   );
+  // }
 
   checkOutSessionWithCach(
     cartId: string | null,
@@ -63,10 +63,11 @@ export class CartService {
     );
   }
 
-  private getReturnUrl(): string {
-    if (isPlatformBrowser(this.platformId)) {
-      return window.location.origin;
-    }
-    return environment.base_url;
+  setOnlineOrder(cartId: string, addressInfo: object): Observable<any> {
+    const returnUrl = window.location.origin;
+    return this.httpClient.post(
+      `${environment}/api/v1/orders/checkout-session/${cartId}?url=${encodeURIComponent(returnUrl)}`,
+      { shippingAddress: addressInfo },
+    );
   }
 }
