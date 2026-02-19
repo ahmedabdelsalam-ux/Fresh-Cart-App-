@@ -12,7 +12,7 @@
   <!-- Orders List -->
   @if (orders().length > 0) {
     <div class="space-y-6">
-      @for (order of orders(); track order._id) {
+      @for (order of orders().reverse(); track order._id) {
         <div
           class="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm hover:shadow-lg transition duration-300"
         >
