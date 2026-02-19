@@ -56,7 +56,7 @@ export class CardComponent implements OnInit {
         if (res.status === 'success') {
           this.cartService.cartCount.set(res.numOfCartItems);
           //toster
-          this.toastrService.success(res.message, 'freach Cart');
+          this.toastrService.success(res.message, 'Freach Cart');
         }
       },
     });
@@ -74,7 +74,7 @@ export class CardComponent implements OnInit {
     this.wishlistService.toggleWishlist(id).subscribe({
       next: (res) => {
         if (res.status === 'success') {
-          this.toastrService.success(res.message, 'Wishlist');
+          this.toastrService.success(res.message, 'Freach Cart');
         }
         this.isProcessing = false;
       },
