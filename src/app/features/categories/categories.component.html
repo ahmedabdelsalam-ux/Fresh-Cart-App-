@@ -1,25 +1,43 @@
-<section class="pb-16 pt-10 bg-gray-100">
-  <div class="container xl:w-[93%]">
-    <div class="paerant gap-4 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+<section class="py-12 bg-gray-50">
+  <div class="container xl:w-[93%] mx-auto px-4">
+    <!-- Header -->
+    <div class="mb-8">
+      <h2 class="text-2xl font-semibold text-gray-800">Shop by Category</h2>
+      <p class="text-sm text-gray-400 mt-1">Browse our wide range of categories</p>
+    </div>
+
+    <!-- Grid -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
       @for (category of categorieList(); track category._id) {
-        <div class="">
-          <div
-            class="image cursor-pointer"
-            [routerLink]="['/filter-product', category.slug, category._id]"
-          >
+        <div
+          [routerLink]="['/filter-product', category.slug, category._id]"
+          class="group cursor-pointer bg-white rounded-2xl border border-gray-100 overflow-hidden hover:-translate-y-1 hover:border-green-200 hover:shadow-md transition-all duration-300"
+        >
+          <!-- Image -->
+          <div class="relative w-full overflow-hidden bg-gray-50" style="padding-bottom: 100%">
             <img
-              class="w-full h-100"
+              class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               [src]="category.image"
               [alt]="category.name"
               [title]="category.name"
             />
+            <!-- Overlay -->
+            <div
+              class="absolute inset-0 bg-linear-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            ></div>
           </div>
-          <h4
-            [routerLink]="['/filter-product', category.slug, category._id]"
-            class="text-green-600 text-lg w-fit cursor-pointer"
-          >
-            {{ category.name }}
-          </h4>
+
+          <!-- Label -->
+          <div class="px-3 py-3 flex items-center justify-between">
+            <h4
+              class="text-sm font-medium text-gray-700 group-hover:text-green-600 transition-colors duration-200 truncate"
+            >
+              {{ category.name }}
+            </h4>
+            <i
+              class="fas fa-chevron-right text-2xs text-gray-300 group-hover:text-green-500 group-hover:translate-x-0.5 transition-all duration-200"
+            ></i>
+          </div>
         </div>
       }
     </div>

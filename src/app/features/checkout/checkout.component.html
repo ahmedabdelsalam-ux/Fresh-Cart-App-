@@ -1,55 +1,103 @@
-<section
-  class="border border-gray-200 shadow-xs rounded bg-gray-200 md:w-1/2 mx-auto p-4 px-6 py-10 my-16"
->
-  <div class="titel py-4">
-    <h2 class="mb-3 text-green-600 font-medium text-3xl text-center">Checkout Now</h2>
+<section class="my-16 md:w-1/2 mx-auto px-4">
+  <div class="bg-white border border-gray-200 rounded-2xl p-10">
+    <!-- Header -->
+    <div class="text-center mb-8">
+      <p class="text-xs tracking-widest text-gray-400 uppercase mb-1">Secure Checkout</p>
+      <h2 class="text-xl font-medium text-gray-900 mb-2">
+        Checkout <span class="text-green-600">Now</span>
+      </h2>
+      <div class="w-7 h-0.5 bg-green-500 mx-auto rounded-full"></div>
+    </div>
+
+    <form [formGroup]="checkOutForm">
+      <div formGroupName="shippingAddress" class="space-y-5">
+        <!-- Details -->
+        <div>
+          <label for="details" class="block text-xs font-medium text-gray-700 mb-1.5">
+            Details
+          </label>
+          <textarea
+            formControlName="details"
+            id="details"
+            rows="3"
+            class="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 bg-white text-gray-900 text-sm placeholder:text-gray-300 focus:outline-none focus:border-green-500 transition-colors duration-200 resize-none"
+            placeholder="Enter your address details..."
+          ></textarea>
+          @if (
+            checkOutForm.get('shippingAddress.details')?.invalid &&
+            checkOutForm.get('shippingAddress.details')?.touched
+          ) {
+            <p class="text-red-400 text-xs mt-1.5">Please enter your address details</p>
+          }
+        </div>
+
+        <!-- Phone -->
+        <div>
+          <label for="phone" class="block text-xs font-medium text-gray-700 mb-1.5">
+            Phone Number
+          </label>
+          <input
+            formControlName="phone"
+            autocomplete="off"
+            type="tel"
+            id="phone"
+            class="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 bg-white text-gray-900 text-sm placeholder:text-gray-300 focus:outline-none focus:border-green-500 transition-colors duration-200"
+            placeholder="e.g. 01012345678"
+          />
+          @if (
+            checkOutForm.get('shippingAddress.phone')?.invalid &&
+            checkOutForm.get('shippingAddress.phone')?.touched
+          ) {
+            <p class="text-red-400 text-xs mt-1.5">Please enter a valid phone number</p>
+          }
+        </div>
+
+        <!-- City -->
+        <div>
+          <label for="city" class="block text-xs font-medium text-gray-700 mb-1.5"> City </label>
+          <input
+            formControlName="city"
+            autocomplete="off"
+            type="text"
+            id="city"
+            class="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 bg-white text-gray-900 text-sm placeholder:text-gray-300 focus:outline-none focus:border-green-500 transition-colors duration-200"
+            placeholder="e.g. Cairo"
+          />
+          @if (
+            checkOutForm.get('shippingAddress.city')?.invalid &&
+            checkOutForm.get('shippingAddress.city')?.touched
+          ) {
+            <p class="text-red-400 text-xs mt-1.5">Please enter your city</p>
+          }
+        </div>
+      </div>
+
+      <!-- Buttons -->
+      <div class="flex flex-col gap-3 mt-8">
+        <button
+          type="button"
+          (click)="onSubmitCheckOutFormWithVisa()"
+          [disabled]="checkOutForm.invalid"
+          class="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-green-600 text-white text-sm font-medium hover:bg-green-700 disabled:opacity-35 disabled:cursor-not-allowed transition-colors duration-200 cursor-pointer"
+        >
+          <i class="fa-brands fa-cc-visa text-xl"></i>
+          Payment with Visa
+        </button>
+
+        <button
+          type="button"
+          (click)="onSubmitCheckOutFormWithCach()"
+          [disabled]="checkOutForm.invalid"
+          class="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-white text-green-600 text-sm font-medium border border-green-500 hover:bg-green-50 disabled:opacity-35 disabled:cursor-not-allowed transition-colors duration-200 cursor-pointer"
+        >
+          <i class="fa-solid fa-money-bill-wave"></i>
+          Payment with Cash
+        </button>
+      </div>
+
+      @if (checkOutForm.invalid) {
+        <p class="text-center text-xs text-gray-400 mt-3">Fill in all fields to continue</p>
+      }
+    </form>
   </div>
-
-  <form [formGroup]="checkOutForm">
-    <div formGroupName="shippingAddress">
-      <div class="mb-2">
-        <label for="details" class="main-label">Details</label>
-        <textarea
-          formControlName="details"
-          id="details"
-          class="main-input"
-          placeholder=""
-        ></textarea>
-      </div>
-
-      <div class="mb-4">
-        <label for="phone" class="main-label">Phone Number</label>
-        <input
-          formControlName="phone"
-          autocomplete="off"
-          type="tel"
-          id="phone"
-          class="main-input"
-          placeholder=""
-        />
-      </div>
-      <div class="mb-4">
-        <label for="city" class="main-label">City</label>
-        <input
-          formControlName="city"
-          autocomplete="off"
-          type="text"
-          id="city"
-          class="main-input"
-          placeholder=""
-        />
-      </div>
-    </div>
-
-    <div class="mb-3">
-      <button type="button" (click)="onSubmitCheckOutFormWithVisa()" class="btn-main px-3 w-full">
-        Payment With <i class="fa-brands fa-cc-visa text-2xl"></i>
-      </button>
-    </div>
-    <div class="">
-      <button type="button" (click)="onSubmitCheckOutFormWithCach()" class="btn-main px-3 w-full">
-        Payment With Cach
-      </button>
-    </div>
-  </form>
 </section>

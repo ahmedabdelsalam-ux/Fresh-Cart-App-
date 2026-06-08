@@ -1,7 +1,23 @@
-<section class="my-16">
-  <div class="w-1/2 mx-auto text-center">
-    <div class="w-full">
-      <img src="/assets/images/error.svg" alt="" />
+<section class="min-h-[70vh] flex items-center justify-center py-16">
+  <div class="text-center px-4">
+    <div class="w-64 sm:w-80 mx-auto mb-8">
+      <img src="/assets/images/error.svg" alt="Page not found" class="w-full" />
     </div>
+
+    <p class="text-xs tracking-widest text-gray-400 uppercase mb-2">404 Error</p>
+    <h2 class="text-2xl font-medium text-gray-900 mb-3">
+      Page <span class="text-green-600">Not Found</span>
+    </h2>
+    <p class="text-sm text-gray-400 mb-8 max-w-xs mx-auto leading-relaxed">
+      Looks like this page doesn't exist or has been moved.
+    </p>
+
+    <a
+      routerLink="/home"
+      class="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-green-600 text-white text-sm font-medium hover:bg-green-700 transition-colors duration-200"
+    >
+      <i class="fa-solid fa-arrow-left text-xs"></i>
+      Back to Home
+    </a>
   </div>
 </section>

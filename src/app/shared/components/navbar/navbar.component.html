@@ -1,142 +1,111 @@
-<nav class="bg-gray-200 border-b border-default fixed w-full z-20">
-  <div class="max-w-screen-2xl flex flex-wrap items-center justify-between space-x-4 mx-auto p-4">
-    <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
-      <img src="/assets/images/freshcart-logo.svg" class="h-7" alt="freshcart Logo" />
+<nav class="bg-white border-b border-gray-200 fixed w-full z-20 h-16">
+  <div class="max-w-screen-2xl mx-auto px-4 h-full flex items-center justify-between gap-4">
+    <!-- Logo -->
+    <a routerLink="/home" class="flex items-center shrink-0">
+      <img src="/assets/images/freshcart-logo.svg" class="h-7" alt="FreshCart Logo" />
     </a>
+
+    <!-- Hamburger (mobile) -->
     <button
-      data-collapse-toggle="navbar-default"
-      type="button"
-      class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-body rounded-base md:hidden hover:bg-neutral-secondary-soft hover:text-heading focus:outline-none focus:ring-2 focus:ring-neutral-tertiary"
-      aria-controls="navbar-default"
-      aria-expanded="false"
+      (click)="toggleMenu()"
+      class="inline-flex md:hidden items-center justify-center w-9 h-9 rounded-lg text-gray-500 hover:bg-gray-100 transition"
+      aria-label="Open menu"
     >
-      <span class="sr-only">Open main menu</span>
-      <svg
-        class="w-6 h-6"
-        aria-hidden="true"
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        fill="none"
-        viewBox="0 0 24 24"
-      >
-        <path
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-width="2"
-          d="M5 7h14M5 12h14M5 17h14"
-        />
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16" />
       </svg>
     </button>
-    <div class="hidden w-full md:grow md:flex md:w-auto" id="navbar-default">
-      @if (isLogin === true) {
-        <ul
-          class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-default rounded-base md:flex-row md:space-x-0 rtl:space-x-reverse md:mt-0 md:border-0"
-        >
+
+    <!-- Desktop nav -->
+    <div class="hidden md:flex md:items-center md:flex-1 md:gap-1">
+      @if (isLogin) {
+        <ul class="flex items-center gap-1">
           <li>
             <a
               routerLink="/home"
-              routerLinkActive="bg-green-600 text-white "
-              class="block py-2 px-3 rounded text-gray-700 md:py-1 md:px-2"
-              aria-current="page"
-              >Home</a
+              routerLinkActive="!bg-green-600 !text-white"
+              class="block px-3 py-1.5 rounded-lg text-sm font-medium text-gray-600 hover:bg-green-50 hover:text-green-700 transition"
             >
+              Home
+            </a>
           </li>
           <li>
             <a
               routerLink="/products"
-              routerLinkActive="bg-green-600 text-white"
-              class="block py-2 px-3 rounded text-gray-700 md:py-1 md:px-2"
-              aria-current="page"
-              >Products</a
+              routerLinkActive="!bg-green-600 !text-white"
+              class="block px-3 py-1.5 rounded-lg text-sm font-medium text-gray-600 hover:bg-green-50 hover:text-green-700 transition"
             >
+              Products
+            </a>
           </li>
           <li>
             <a
               routerLink="/categories"
-              routerLinkActive="bg-green-600 text-white"
-              class="block py-2 px-3 rounded text-gray-700 md:py-1 md:px-2"
-              aria-current="page"
-              >Categories</a
+              routerLinkActive="!bg-green-600 !text-white"
+              class="block px-3 py-1.5 rounded-lg text-sm font-medium text-gray-600 hover:bg-green-50 hover:text-green-700 transition"
             >
+              Categories
+            </a>
           </li>
           <li>
             <a
               routerLink="/brands"
-              routerLinkActive="bg-green-600 text-white"
-              class="block py-2 px-3 rounded text-gray-700 md:py-1 md:px-2"
-              aria-current="page"
-              >Brands</a
+              routerLinkActive="!bg-green-600 !text-white"
+              class="block px-3 py-1.5 rounded-lg text-sm font-medium text-gray-600 hover:bg-green-50 hover:text-green-700 transition"
             >
+              Brands
+            </a>
           </li>
         </ul>
       }
 
-      <ul
-        class="font-medium ms-auto flex flex-col p-4 md:p-0 mt-4 border border-default rounded-base md:flex-row md:space-x-2 rtl:space-x-reverse md:mt-0 md:border-0"
-      >
+      <!-- Right side -->
+      <ul class="flex items-center gap-1 ml-auto">
+        <!-- Social icons -->
         <li>
           <a
             href="#"
-            class="block py-2 rounded text-gray-700 md:py-1 md:px-2 hover:bg-green-600 hover:text-gray-200 transition duration-500"
-            aria-current="page"
-          >
-            <i class="fab fa-instagram"></i>
-          </a>
+            class="w-8 h-8 flex items-center justify-center rounded-lg text-gray-400 hover:bg-green-50 hover:text-green-600 transition text-sm"
+            ><i class="fab fa-instagram"></i
+          ></a>
         </li>
         <li>
           <a
             href="#"
-            class="block py-2 rounded text-gray-700 md:py-1 md:px-2 hover:bg-green-600 hover:text-gray-200 transition duration-500"
-            aria-current="page"
-          >
-            <i class="fab fa-facebook"></i>
-          </a>
+            class="w-8 h-8 flex items-center justify-center rounded-lg text-gray-400 hover:bg-green-50 hover:text-green-600 transition text-sm"
+            ><i class="fab fa-facebook"></i
+          ></a>
         </li>
         <li>
           <a
             href="#"
-            class="block py-2 rounded text-gray-700 md:py-1 md:px-2 hover:bg-green-600 hover:text-gray-200 transition duration-500"
-            aria-current="page"
-          >
-            <i class="fab fa-tiktok"></i>
-          </a>
+            class="w-8 h-8 flex items-center justify-center rounded-lg text-gray-400 hover:bg-green-50 hover:text-green-600 transition text-sm"
+            ><i class="fab fa-tiktok"></i
+          ></a>
         </li>
         <li>
           <a
             href="#"
-            class="block py-2 rounded text-gray-700 md:py-1 md:px-2 hover:bg-green-600 hover:text-gray-200 transition duration-500"
-            aria-current="page"
-          >
-            <i class="fab fa-twitter"></i>
-          </a>
+            class="w-8 h-8 flex items-center justify-center rounded-lg text-gray-400 hover:bg-green-50 hover:text-green-600 transition text-sm"
+            ><i class="fab fa-twitter"></i
+          ></a>
         </li>
         <li>
           <a
             href="#"
-            class="block py-2 rounded text-gray-700 md:py-1 md:px-2 hover:bg-green-600 hover:text-gray-200 transition duration-500"
-            aria-current="page"
-          >
-            <i class="fab fa-linkedin"></i>
-          </a>
-        </li>
-        <li>
-          <a
-            href="#"
-            class="block py-2 rounded text-gray-700 md:py-1 md:px-2 hover:bg-green-600 hover:text-gray-200 transition duration-500"
-            aria-current="page"
-          >
-            <i class="fab fa-youtube"></i>
-          </a>
+            class="w-8 h-8 flex items-center justify-center rounded-lg text-gray-400 hover:bg-green-50 hover:text-green-600 transition text-sm"
+            ><i class="fab fa-youtube"></i
+          ></a>
         </li>
 
-        @if (isLogin === false) {
+        <!-- Divider -->
+        <li class="w-px h-6 bg-gray-200 mx-2"></li>
+
+        @if (!isLogin) {
           <li>
             <a
               routerLink="/register"
-              routerLinkActive="bg-green-600 text-white"
-              class="block py-2 px-3 rounded text-gray-700 md:py-1 md:px-2"
-              aria-current="page"
+              class="px-4 py-1.5 rounded-lg text-sm font-medium text-gray-600 border border-gray-300 hover:border-green-600 hover:text-green-700 hover:bg-green-50 transition"
             >
               Register
             </a>
@@ -144,47 +113,197 @@
           <li>
             <a
               routerLink="/login"
-              routerLinkActive="bg-green-600 text-white"
-              class="block py-2 px-3 rounded text-gray-700 md:py-1 md:px-2"
-              aria-current="page"
+              class="px-4 py-1.5 rounded-lg text-sm font-medium text-white bg-green-600 hover:bg-green-700 transition"
             >
               Login
             </a>
           </li>
         } @else {
-          <li type="button" class="relative">
-            <a routerLink="/cart">
-              <i class="fas fa-cart-shopping text-4xl"></i>
-              <div
-                class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-green-600 rounded-full -top-2 -end-2"
+          <!-- Cart -->
+          <li class="relative">
+            <a
+              routerLink="/cart"
+              class="w-10 h-10 flex items-center justify-center rounded-xl text-gray-600 hover:bg-green-50 hover:text-green-700 transition text-xl"
+            >
+              <i class="fas fa-cart-shopping"></i>
+              <span
+                class="absolute -top-0.5 -right-0.5 min-w-4.5 h-4.5 px-1 bg-green-600 text-white text-2xs font-bold rounded-full flex items-center justify-center border-2 border-white"
               >
                 {{ count() }}
-              </div>
+              </span>
             </a>
           </li>
 
-          <li type="button" class="relative">
-            <a routerLink="/wishlist">
-              <i class="fa-solid fa-heart text-4xl"></i>
-              <div
-                class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-green-600 rounded-full -top-2 -end-2"
+          <!-- Wishlist -->
+          <li class="relative">
+            <a
+              routerLink="/wishlist"
+              class="w-10 h-10 flex items-center justify-center rounded-xl text-red-400 hover:bg-red-50 hover:text-red-500 transition text-xl"
+            >
+              <i class="fa-solid fa-heart"></i>
+              <span
+                class="absolute -top-0.5 -right-0.5 min-w-4.5 h-4.5 px-1 bg-red-500 text-white text-2xs font-bold rounded-full flex items-center justify-center border-2 border-white"
               >
                 {{ wishListcount() }}
-              </div>
+              </span>
             </a>
           </li>
 
+          <!-- Sign out -->
           <li>
-            <a
+            <button
               (click)="signOut()"
-              class="block py-2 px-3 rounded text-gray-700 md:py-1 md:px-2 cursor-pointer"
-              aria-current="page"
+              class="px-3 py-1.5 rounded-lg text-sm font-medium text-gray-500 hover:bg-red-50 hover:text-red-600 transition"
             >
-              SignOut
-            </a>
+              Sign out
+            </button>
           </li>
         }
       </ul>
     </div>
   </div>
 </nav>
+
+<!-- Mobile drawer -->
+<div
+  [class.translate-x-0]="menuOpen"
+  [class.-translate-x-full]="!menuOpen"
+  class="fixed inset-y-0 left-0 z-40 w-72 bg-white shadow-xl transform transition-transform duration-300 md:hidden flex flex-col"
+>
+  <!-- Drawer header -->
+  <div class="flex items-center justify-between px-4 h-16 border-b border-gray-100">
+    <img src="/assets/images/freshcart-logo.svg" class="h-7" alt="FreshCart" />
+    <div class="flex items-center gap-2">
+      @if (isLogin) {
+        <a
+          routerLink="/cart"
+          class="relative w-9 h-9 flex items-center justify-center rounded-lg bg-gray-50 text-gray-600 text-lg"
+        >
+          <i class="fas fa-cart-shopping"></i>
+          <span
+            class="absolute -top-1 -right-1 min-w-4 h-4 px-0.5 bg-green-600 text-white text-[9px] font-bold rounded-full flex items-center justify-center border-2 border-white"
+            >{{ count() }}</span
+          >
+        </a>
+        <a
+          routerLink="/wishlist"
+          class="relative w-9 h-9 flex items-center justify-center rounded-lg bg-red-50 text-red-400 text-lg"
+        >
+          <i class="fa-solid fa-heart"></i>
+          <span
+            class="absolute -top-1 -right-1 min-w-4 h-4 px-0.5 bg-red-500 text-white text-[9px] font-bold rounded-full flex items-center justify-center border-2 border-white"
+            >{{ wishListcount() }}</span
+          >
+        </a>
+      }
+      <button
+        (click)="toggleMenu()"
+        class="w-9 h-9 flex items-center justify-center rounded-lg bg-gray-100 text-gray-500 text-lg"
+      >
+        <i class="fas fa-xmark"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Nav links -->
+  @if (isLogin) {
+    <nav class="flex-1 overflow-y-auto p-3 space-y-0.5">
+      <a
+        routerLink="/home"
+        routerLinkActive="!bg-green-600 !text-white"
+        (click)="toggleMenu()"
+        class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-green-50 hover:text-green-700 transition"
+      >
+        <i class="fas fa-home w-4 text-center text-gray-400"></i> Home
+      </a>
+      <a
+        routerLink="/products"
+        routerLinkActive="!bg-green-600 !text-white"
+        (click)="toggleMenu()"
+        class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-green-50 hover:text-green-700 transition"
+      >
+        <i class="fas fa-box-open w-4 text-center text-gray-400"></i> Products
+      </a>
+      <a
+        routerLink="/categories"
+        routerLinkActive="!bg-green-600 !text-white"
+        (click)="toggleMenu()"
+        class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-green-50 hover:text-green-700 transition"
+      >
+        <i class="fas fa-th-large w-4 text-center text-gray-400"></i> Categories
+      </a>
+      <a
+        routerLink="/brands"
+        routerLinkActive="!bg-green-600 !text-white"
+        (click)="toggleMenu()"
+        class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-green-50 hover:text-green-700 transition"
+      >
+        <i class="fas fa-tag w-4 text-center text-gray-400"></i> Brands
+      </a>
+    </nav>
+  }
+
+  <!-- Drawer footer -->
+  <div class="p-3 border-t border-gray-100 space-y-2">
+    <!-- Social -->
+    <div class="flex justify-center gap-1">
+      <a
+        href="#"
+        class="w-8 h-8 flex items-center justify-center rounded-lg bg-gray-50 text-gray-400 hover:text-green-600 text-sm"
+        ><i class="fab fa-instagram"></i
+      ></a>
+      <a
+        href="#"
+        class="w-8 h-8 flex items-center justify-center rounded-lg bg-gray-50 text-gray-400 hover:text-green-600 text-sm"
+        ><i class="fab fa-facebook"></i
+      ></a>
+      <a
+        href="#"
+        class="w-8 h-8 flex items-center justify-center rounded-lg bg-gray-50 text-gray-400 hover:text-green-600 text-sm"
+        ><i class="fab fa-tiktok"></i
+      ></a>
+      <a
+        href="#"
+        class="w-8 h-8 flex items-center justify-center rounded-lg bg-gray-50 text-gray-400 hover:text-green-600 text-sm"
+        ><i class="fab fa-twitter"></i
+      ></a>
+      <a
+        href="#"
+        class="w-8 h-8 flex items-center justify-center rounded-lg bg-gray-50 text-gray-400 hover:text-green-600 text-sm"
+        ><i class="fab fa-youtube"></i
+      ></a>
+    </div>
+
+    @if (!isLogin) {
+      <div class="flex gap-2">
+        <a
+          routerLink="/register"
+          class="flex-1 py-2 text-center rounded-lg text-sm font-medium text-gray-600 border border-gray-300"
+          >Register</a
+        >
+        <a
+          routerLink="/login"
+          class="flex-1 py-2 text-center rounded-lg text-sm font-medium text-white bg-green-600"
+          >Login</a
+        >
+      </div>
+    } @else {
+      <button
+        (click)="signOut()"
+        class="w-full py-2.5 rounded-lg text-sm font-medium text-red-600 bg-red-50 hover:bg-red-100 transition flex items-center justify-center gap-2"
+      >
+        <i class="fas fa-arrow-right-from-bracket"></i> Sign out
+      </button>
+    }
+  </div>
+</div>
+
+<!-- Overlay -->
+<div
+  (click)="toggleMenu()"
+  [class.opacity-100]="menuOpen"
+  [class.pointer-events-auto]="menuOpen"
+  [class.opacity-0]="!menuOpen"
+  [class.pointer-events-none]="!menuOpen"
+  class="fixed inset-0 z-30 bg-black/30 transition-opacity duration-300 md:hidden"
+></div>

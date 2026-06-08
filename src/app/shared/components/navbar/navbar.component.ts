@@ -1,4 +1,13 @@
-import { Component, computed, inject, Input, OnInit, PLATFORM_ID, Signal } from '@angular/core';
+import {
+  Component,
+  computed,
+  inject,
+  Input,
+  OnDestroy,
+  OnInit,
+  PLATFORM_ID,
+  Signal,
+} from '@angular/core';
 import { initFlowbite } from 'flowbite';
 import { FlowbiteService } from '../../../core/services/flowbite/flowbite.service';
 import { RouterLink, RouterLinkActive } from '@angular/router';
@@ -14,7 +23,7 @@ import { WishlistService } from '../../../features/wishlist/services/wishlist.se
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css',
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, OnDestroy {
   @Input({ required: true }) isLogin!: boolean;
 
   constructor(private flowbiteService: FlowbiteService) {}
@@ -24,6 +33,20 @@ export class NavbarComponent implements OnInit {
   private readonly wishlistService = inject(WishlistService);
 
   private readonly platId = inject(PLATFORM_ID);
+
+  menuOpen = false;
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen;
+    if (isPlatformBrowser(this.platId)) {
+      document.body.style.overflow = this.menuOpen ? 'hidden' : '';
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (isPlatformBrowser(this.platId)) {
+      document.body.style.overflow = '';
+    }
+  }
 
   count: Signal<number> = computed(() => this.cartService.cartCount());
 
