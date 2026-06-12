@@ -1,20 +1,23 @@
+import { isPlatformBrowser } from '@angular/common';
 import {
+  AfterViewInit,
   Component,
   computed,
+  ElementRef,
   inject,
   Input,
+  NgZone,
   OnInit,
   PLATFORM_ID,
   Signal,
-  WritableSignal,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { storedKey } from '../../../core/constants/stored_Key';
 import { Product } from '../../../core/models/productsInter/product.interface';
+import { ProductDetailsService } from '../../../core/services/products/services/product-details/product-details.service';
 import { CartService } from '../../../features/cart/services/cart.service';
 import { WishlistService } from '../../../features/wishlist/services/wishlist.service';
-import { isPlatformBrowser } from '@angular/common';
-import { storedKey } from '../../../core/constants/stored_Key';
 
 @Component({
   selector: 'app-card',
@@ -22,12 +25,14 @@ import { storedKey } from '../../../core/constants/stored_Key';
   templateUrl: './card.component.html',
   styleUrl: './card.component.css',
 })
-export class CardComponent implements OnInit {
+export class CardComponent implements OnInit, AfterViewInit {
   @Input() cardProduct!: Product;
 
-  private readonly cartService = inject(CartService);
+  private readonly productDetailsService = inject(ProductDetailsService);
   private readonly wishlistService = inject(WishlistService);
   private readonly toastrService = inject(ToastrService);
+  private readonly el = inject(ElementRef);
+  private readonly ngZone = inject(NgZone);
   private readonly platId = inject(PLATFORM_ID);
 
   isInWishlist: Signal<boolean> = computed(() => {
@@ -50,16 +55,29 @@ export class CardComponent implements OnInit {
     }
   }
 
-  addProductItemToCart(id: string): void {
-    this.cartService.addProductToCart(id).subscribe({
-      next: (res) => {
-        if (res.status === 'success') {
-          this.cartService.cartCount.set(res.numOfCartItems);
-          //toster
-          this.toastrService.success(res.message, 'Freach Cart');
-        }
-      },
+  ngAfterViewInit() {
+    if (!isPlatformBrowser(this.platId)) return; // مش هيشتغل على السيرفر
+
+    this.ngZone.runOutsideAngular(async () => {
+      const gsap = (await import('gsap')).gsap;
+      const { ScrollTrigger } = await import('gsap/ScrollTrigger');
+      gsap.registerPlugin(ScrollTrigger);
+
+      gsap.from(this.el.nativeElement, {
+        scrollTrigger: {
+          trigger: this.el.nativeElement,
+          start: 'top 85%',
+        },
+        y: 60,
+        opacity: 0,
+        duration: 0.7,
+        ease: 'power2.out',
+      });
     });
+  }
+
+  addProductItemToCart(id: string): void {
+    this.productDetailsService.addProductItemToCart(id);
   }
 
   toggleWishlist(event: Event): void {

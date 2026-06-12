@@ -183,16 +183,26 @@
 
           <div class="flex items-center gap-2.5">
             <button
-              class="flex-1 flex items-center justify-center gap-2 py-3.5 rounded-2xl bg-green-600 hover:bg-green-700 active:scale-[.98] text-white text-sm font-medium transition-all duration-200"
+              (click)="addProductItemToCart(productDetailsData()._id)"
+              class="flex-1 flex items-center justify-center gap-2 py-3.5 rounded-2xl bg-green-600 hover:bg-green-700 active:scale-[.98] text-white text-sm font-medium transition-all duration-200 cursor-pointer"
             >
               <i class="fas fa-cart-shopping"></i>
               Add to Cart
             </button>
             <button
-              class="w-12 h-12 flex items-center justify-center shrink-0 rounded-2xl border-2 border-gray-200 bg-white text-gray-300 hover:border-red-300 hover:bg-red-50 hover:text-red-500 active:scale-[.97] transition-all duration-200 text-lg"
+              (click)="toggleWishlist($event)"
+              class="w-12 h-12 flex items-center justify-center shrink-0 rounded-2xl border-2 bg-white text-gray-300 border-gray-200 hover:border-red-300 hover:bg-red-50 hover:text-red-400 active:scale-[.97] transition-all duration-200 text-lg cursor-pointer"
+              [class.!border-red-400]="isInWishlist()"
+              [class.!bg-red-50]="isInWishlist()"
+              [class.!text-red-500]="isInWishlist()"
               aria-label="Add to wishlist"
             >
-              <i class="fa-regular fa-heart"></i>
+              <i
+                class="transition-all duration-200"
+                [class.fa-solid]="isInWishlist()"
+                [class.fa-regular]="!isInWishlist()"
+                [class.fa-heart]="true"
+              ></i>
             </button>
           </div>
 
